@@ -10,23 +10,20 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import android.view.Window;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ListView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import com.knowweather.app.R.id;
 import com.knowweather.app.R.layout;
-import org.androidannotations.api.SdkVersionHelper;
 import org.androidannotations.api.builder.ActivityIntentBuilder;
 import org.androidannotations.api.view.HasViews;
 import org.androidannotations.api.view.OnViewChangedListener;
 import org.androidannotations.api.view.OnViewChangedNotifier;
 
-public final class ChooseAreaActivity_
-    extends ChooseAreaActivity
+public final class WeatherActivity_
+    extends WeatherActivity
     implements HasViews, OnViewChangedListener
 {
 
@@ -38,7 +35,7 @@ public final class ChooseAreaActivity_
         init_(savedInstanceState);
         super.onCreate(savedInstanceState);
         OnViewChangedNotifier.replaceNotifier(previousNotifier);
-        setContentView(layout.choose_area);
+        setContentView(layout.weather_layout);
     }
 
     private void init_(Bundle savedInstanceState) {
@@ -64,63 +61,48 @@ public final class ChooseAreaActivity_
         onViewChangedNotifier_.notifyViewChanged(this);
     }
 
-    public static ChooseAreaActivity_.IntentBuilder_ intent(Context context) {
-        return new ChooseAreaActivity_.IntentBuilder_(context);
+    public static WeatherActivity_.IntentBuilder_ intent(Context context) {
+        return new WeatherActivity_.IntentBuilder_(context);
     }
 
-    public static ChooseAreaActivity_.IntentBuilder_ intent(android.app.Fragment fragment) {
-        return new ChooseAreaActivity_.IntentBuilder_(fragment);
+    public static WeatherActivity_.IntentBuilder_ intent(android.app.Fragment fragment) {
+        return new WeatherActivity_.IntentBuilder_(fragment);
     }
 
-    public static ChooseAreaActivity_.IntentBuilder_ intent(android.support.v4.app.Fragment supportFragment) {
-        return new ChooseAreaActivity_.IntentBuilder_(supportFragment);
-    }
-
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (((SdkVersionHelper.getSdkInt()< 5)&&(keyCode == KeyEvent.KEYCODE_BACK))&&(event.getRepeatCount() == 0)) {
-            onBackPressed();
-        }
-        return super.onKeyDown(keyCode, event);
+    public static WeatherActivity_.IntentBuilder_ intent(android.support.v4.app.Fragment supportFragment) {
+        return new WeatherActivity_.IntentBuilder_(supportFragment);
     }
 
     @Override
     public void onViewChanged(HasViews hasViews) {
-        titleText = ((TextView) hasViews.findViewById(com.knowweather.app.R.id.title_text));
-        listView = ((ListView) hasViews.findViewById(com.knowweather.app.R.id.list_view));
-        if (listView!= null) {
-            listView.setOnItemClickListener(new OnItemClickListener() {
-
-
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    ChooseAreaActivity_.this.myListItemClicked(position);
-                }
-
-            }
-            );
-        }
+        weatherDespText = ((TextView) hasViews.findViewById(id.weather_desp));
+        temp1Text = ((TextView) hasViews.findViewById(id.temp1));
+        cityNameText = ((TextView) hasViews.findViewById(id.city_name));
+        publishText = ((TextView) hasViews.findViewById(id.publish_text));
+        temp2Text = ((TextView) hasViews.findViewById(id.temp2));
+        weatherInfoLayout = ((LinearLayout) hasViews.findViewById(id.weather_info_layout));
+        currentDateText = ((TextView) hasViews.findViewById(id.current_date));
         afterViewProcess();
     }
 
     public static class IntentBuilder_
-        extends ActivityIntentBuilder<ChooseAreaActivity_.IntentBuilder_>
+        extends ActivityIntentBuilder<WeatherActivity_.IntentBuilder_>
     {
 
         private android.app.Fragment fragment_;
         private android.support.v4.app.Fragment fragmentSupport_;
 
         public IntentBuilder_(Context context) {
-            super(context, ChooseAreaActivity_.class);
+            super(context, WeatherActivity_.class);
         }
 
         public IntentBuilder_(android.app.Fragment fragment) {
-            super(fragment.getActivity(), ChooseAreaActivity_.class);
+            super(fragment.getActivity(), WeatherActivity_.class);
             fragment_ = fragment;
         }
 
         public IntentBuilder_(android.support.v4.app.Fragment fragment) {
-            super(fragment.getActivity(), ChooseAreaActivity_.class);
+            super(fragment.getActivity(), WeatherActivity_.class);
             fragmentSupport_ = fragment;
         }
 

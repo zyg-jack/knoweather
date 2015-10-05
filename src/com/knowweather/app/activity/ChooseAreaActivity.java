@@ -22,7 +22,10 @@ import com.knowweather.app.util.Utility;
 import android.app.Activity;
 import android.app.DownloadManager.Query;
 import android.app.ProgressDialog;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
@@ -32,6 +35,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+@NoTitle
 @EActivity(R.layout.choose_area)
 public class ChooseAreaActivity extends Activity {
 
@@ -61,6 +65,14 @@ public class ChooseAreaActivity extends Activity {
 	
 	@AfterViews
 	void afterViewProcess(){
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+		if (prefs.getBoolean("city_selected", false)) {
+			Intent intent = new Intent(this, WeatherActivity_.class);
+			startActivity(intent);
+			finish();
+			return;
+		}
+		
 		adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, dataList);
 		listView.setAdapter(adapter);
 		knowWeatherDB = KnowWeatherDB.getInstance(this);
@@ -92,6 +104,12 @@ public class ChooseAreaActivity extends Activity {
 		} else if (currentLevel == LEVEL_CITY) {
 			selectCity = cityList.get(position);
 			queryCounties();
+		} else if (currentLevel == LEVEL_COUNTRY) {
+			String countryCode = countryList.get(position).getCountryCode();
+			Intent intent = new Intent(ChooseAreaActivity.this, WeatherActivity_.class);
+			intent.putExtra("country_code", countryCode);
+			startActivity(intent);
+			finish();
 		}
     }
 

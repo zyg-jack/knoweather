@@ -11,8 +11,10 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.knowweather.app.R.id;
@@ -76,12 +78,38 @@ public final class WeatherActivity_
     @Override
     public void onViewChanged(HasViews hasViews) {
         weatherDespText = ((TextView) hasViews.findViewById(id.weather_desp));
-        temp1Text = ((TextView) hasViews.findViewById(id.temp1));
         cityNameText = ((TextView) hasViews.findViewById(id.city_name));
+        weatherInfoLayout = ((LinearLayout) hasViews.findViewById(id.weather_info_layout));
+        switchCity = ((Button) hasViews.findViewById(id.switch_city));
+        temp1Text = ((TextView) hasViews.findViewById(id.temp1));
         publishText = ((TextView) hasViews.findViewById(id.publish_text));
         temp2Text = ((TextView) hasViews.findViewById(id.temp2));
-        weatherInfoLayout = ((LinearLayout) hasViews.findViewById(id.weather_info_layout));
+        refreshWeather = ((Button) hasViews.findViewById(id.refresh_weather));
         currentDateText = ((TextView) hasViews.findViewById(id.current_date));
+        if (refreshWeather!= null) {
+            refreshWeather.setOnClickListener(new OnClickListener() {
+
+
+                @Override
+                public void onClick(View view) {
+                    WeatherActivity_.this.refreshWeatherClicked();
+                }
+
+            }
+            );
+        }
+        if (switchCity!= null) {
+            switchCity.setOnClickListener(new OnClickListener() {
+
+
+                @Override
+                public void onClick(View view) {
+                    WeatherActivity_.this.switchCityClicked();
+                }
+
+            }
+            );
+        }
         afterViewProcess();
     }
 

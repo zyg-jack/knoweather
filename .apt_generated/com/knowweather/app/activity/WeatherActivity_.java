@@ -77,27 +77,15 @@ public final class WeatherActivity_
 
     @Override
     public void onViewChanged(HasViews hasViews) {
-        weatherDespText = ((TextView) hasViews.findViewById(id.weather_desp));
-        cityNameText = ((TextView) hasViews.findViewById(id.city_name));
-        weatherInfoLayout = ((LinearLayout) hasViews.findViewById(id.weather_info_layout));
         switchCity = ((Button) hasViews.findViewById(id.switch_city));
-        temp1Text = ((TextView) hasViews.findViewById(id.temp1));
-        publishText = ((TextView) hasViews.findViewById(id.publish_text));
-        temp2Text = ((TextView) hasViews.findViewById(id.temp2));
         refreshWeather = ((Button) hasViews.findViewById(id.refresh_weather));
+        temp2Text = ((TextView) hasViews.findViewById(id.temp2));
+        weatherInfoLayout = ((LinearLayout) hasViews.findViewById(id.weather_info_layout));
         currentDateText = ((TextView) hasViews.findViewById(id.current_date));
-        if (refreshWeather!= null) {
-            refreshWeather.setOnClickListener(new OnClickListener() {
-
-
-                @Override
-                public void onClick(View view) {
-                    WeatherActivity_.this.refreshWeatherClicked();
-                }
-
-            }
-            );
-        }
+        cityNameText = ((TextView) hasViews.findViewById(id.city_name));
+        publishText = ((TextView) hasViews.findViewById(id.publish_text));
+        temp1Text = ((TextView) hasViews.findViewById(id.temp1));
+        weatherDespText = ((TextView) hasViews.findViewById(id.weather_desp));
         if (switchCity!= null) {
             switchCity.setOnClickListener(new OnClickListener() {
 
@@ -105,6 +93,18 @@ public final class WeatherActivity_
                 @Override
                 public void onClick(View view) {
                     WeatherActivity_.this.switchCityClicked();
+                }
+
+            }
+            );
+        }
+        if (refreshWeather!= null) {
+            refreshWeather.setOnClickListener(new OnClickListener() {
+
+
+                @Override
+                public void onClick(View view) {
+                    WeatherActivity_.this.refreshWeatherClicked();
                 }
 
             }

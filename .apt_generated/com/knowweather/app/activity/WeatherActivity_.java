@@ -77,14 +77,14 @@ public final class WeatherActivity_
 
     @Override
     public void onViewChanged(HasViews hasViews) {
+        cityNameText = ((TextView) hasViews.findViewById(id.city_name));
+        temp1Text = ((TextView) hasViews.findViewById(id.temp1));
+        currentDateText = ((TextView) hasViews.findViewById(id.current_date));
+        weatherInfoLayout = ((LinearLayout) hasViews.findViewById(id.weather_info_layout));
+        publishText = ((TextView) hasViews.findViewById(id.publish_text));
+        temp2Text = ((TextView) hasViews.findViewById(id.temp2));
         switchCity = ((Button) hasViews.findViewById(id.switch_city));
         refreshWeather = ((Button) hasViews.findViewById(id.refresh_weather));
-        temp2Text = ((TextView) hasViews.findViewById(id.temp2));
-        weatherInfoLayout = ((LinearLayout) hasViews.findViewById(id.weather_info_layout));
-        currentDateText = ((TextView) hasViews.findViewById(id.current_date));
-        cityNameText = ((TextView) hasViews.findViewById(id.city_name));
-        publishText = ((TextView) hasViews.findViewById(id.publish_text));
-        temp1Text = ((TextView) hasViews.findViewById(id.temp1));
         weatherDespText = ((TextView) hasViews.findViewById(id.weather_desp));
         if (switchCity!= null) {
             switchCity.setOnClickListener(new OnClickListener() {

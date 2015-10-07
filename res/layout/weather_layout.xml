@@ -36,10 +36,11 @@
     </RelativeLayout>
 
     <RelativeLayout 
+        android:id="@+id/whole_layout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="#27A5F9">
+        android:background="#484E61">
         
         <TextView 
             android:id="@+id/publish_text"
@@ -50,7 +51,7 @@
             android:layout_marginTop="10dp"
             android:textColor="#FFF"
             android:textSize="18sp"/>
-        
+                    
         <LinearLayout
             android:id="@+id/weather_info_layout"
             android:layout_width="wrap_content"
@@ -59,13 +60,15 @@
             android:orientation="vertical">
             
             <TextView 
-                android:id="@+id/current_date"
-	            android:layout_width="wrap_content"
-	            android:layout_height="40dp"
-	            android:gravity="center"
-	            android:textColor="#FFF"
-	            android:textSize="18sp"/>
-            
+	            android:id="@+id/current_date"
+		        android:layout_width="wrap_content"
+		        android:layout_height="60dp"
+		        android:layout_alignParentLeft="true"
+           	    android:layout_marginLeft="10dp"
+          	    android:layout_marginTop="10dp"
+		    	android:textColor="#FFF"
+		        android:textSize="18sp"/>
+                    
             <TextView 
                 android:id="@+id/weather_desp"
 	            android:layout_width="wrap_content"
@@ -77,7 +80,7 @@
             
             <LinearLayout 
                 android:layout_width="wrap_content"
-                android:layout_height="60dp"
+                android:layout_height="100dp"
                 android:layout_gravity="center_horizontal"
                 android:orientation="horizontal">
                 
@@ -87,7 +90,7 @@
 		            android:layout_height="wrap_content"
 		            android:layout_gravity="center_vertical"
 		            android:textColor="#FFF"
-		            android:textSize="40sp"/>
+		            android:textSize="65sp"/>
                 
                 <TextView 
 		            android:layout_width="wrap_content"
@@ -95,9 +98,9 @@
 		            android:layout_gravity="center_vertical"
 		            android:layout_marginLeft="10dp"
           		    android:layout_marginRight="10dp"
-          		    android:text="~"
+          		    android:text="/"
 		            android:textColor="#FFF"
-		            android:textSize="40sp"/>
+		            android:textSize="65sp"/>
                 
                 <TextView 
 	                android:id="@+id/temp2"
@@ -105,7 +108,7 @@
 		            android:layout_height="wrap_content"
 		            android:layout_gravity="center_vertical"
 		            android:textColor="#FFF"
-		            android:textSize="40sp"/>
+		            android:textSize="65sp"/>
                 
             </LinearLayout>
         </LinearLayout>

@@ -5,6 +5,7 @@ import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.NoTitle;
 import org.androidannotations.annotations.ViewById;
+import org.androidannotations.annotations.res.DrawableRes;
 
 import com.knowweather.app.R;
 import com.knowweather.app.service.AutoUpdateService;
@@ -15,17 +16,35 @@ import com.knowweather.app.util.Utility;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 @NoTitle
 @EActivity(R.layout.weather_layout)
 public class WeatherActivity extends Activity {
+	
+	@ViewById(R.id.whole_layout)
+	RelativeLayout wholeLayout;
+	
+	@DrawableRes(R.drawable.rain)
+	Drawable rainPic;
 
+	@DrawableRes(R.drawable.sun)
+	Drawable sunPic;
+	
+	@DrawableRes(R.drawable.cloud)
+	Drawable cloudPic;
+	
+	@DrawableRes(R.drawable.yin)
+	Drawable yinPic;
+	
 	@ViewById(R.id.switch_city)
 	Button switchCity;
 	
@@ -76,7 +95,7 @@ public class WeatherActivity extends Activity {
 	
 	@Click(R.id.refresh_weather)
 	void refreshWeatherClicked() {
-		publishText.setText("同步中。。。");
+		publishText.setText("同步中...");
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
 		String weatherCode = prefs.getString("weather_code", "");
 		if (!TextUtils.isEmpty(weatherCode)) {
@@ -167,6 +186,16 @@ public class WeatherActivity extends Activity {
 			weatherInfoLayout.setVisibility(View.VISIBLE);
 			cityNameText.setVisibility(View.VISIBLE);
 			
+			String weatherDesp = prefs.getString("weather_desp", "");
+			if (weatherDesp.contains("雨")) { 
+				wholeLayout.setBackgroundDrawable(rainPic);
+			} else if (weatherDesp.equals("晴") || weatherDesp.contains("晴转")) {
+				wholeLayout.setBackgroundDrawable(sunPic);
+			} else if (weatherDesp.equals("多云") || weatherDesp.contains("多云转") ) {
+				wholeLayout.setBackgroundDrawable(cloudPic);
+			} else if (weatherDesp.equals("阴") || weatherDesp.contains("阴转")) {
+				wholeLayout.setBackgroundDrawable(yinPic);
+			}
 			Intent intent = new Intent(this, AutoUpdateService.class);
 			startService(intent);
 	}

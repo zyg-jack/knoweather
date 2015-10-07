@@ -86,8 +86,8 @@ public final class ChooseAreaActivity_
 
     @Override
     public void onViewChanged(HasViews hasViews) {
-        titleText = ((TextView) hasViews.findViewById(com.knowweather.app.R.id.title_text));
         listView = ((ListView) hasViews.findViewById(com.knowweather.app.R.id.list_view));
+        titleText = ((TextView) hasViews.findViewById(com.knowweather.app.R.id.title_text));
         if (listView!= null) {
             listView.setOnItemClickListener(new OnItemClickListener() {
 

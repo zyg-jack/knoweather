@@ -8,6 +8,7 @@ package com.knowweather.app.activity;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.view.View;
@@ -16,7 +17,9 @@ import android.view.ViewGroup.LayoutParams;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import com.knowweather.app.R.drawable;
 import com.knowweather.app.R.id;
 import com.knowweather.app.R.layout;
 import org.androidannotations.api.builder.ActivityIntentBuilder;
@@ -42,6 +45,11 @@ public final class WeatherActivity_
 
     private void init_(Bundle savedInstanceState) {
         OnViewChangedNotifier.registerOnViewChangedListener(this);
+        Resources resources_ = this.getResources();
+        yinPic = resources_.getDrawable(drawable.yin);
+        rainPic = resources_.getDrawable(drawable.rain);
+        cloudPic = resources_.getDrawable(drawable.cloud);
+        sunPic = resources_.getDrawable(drawable.sun);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
     }
 
@@ -77,15 +85,16 @@ public final class WeatherActivity_
 
     @Override
     public void onViewChanged(HasViews hasViews) {
-        cityNameText = ((TextView) hasViews.findViewById(id.city_name));
+        refreshWeather = ((Button) hasViews.findViewById(id.refresh_weather));
         temp1Text = ((TextView) hasViews.findViewById(id.temp1));
+        publishText = ((TextView) hasViews.findViewById(id.publish_text));
+        switchCity = ((Button) hasViews.findViewById(id.switch_city));
+        wholeLayout = ((RelativeLayout) hasViews.findViewById(id.whole_layout));
+        cityNameText = ((TextView) hasViews.findViewById(id.city_name));
+        weatherDespText = ((TextView) hasViews.findViewById(id.weather_desp));
+        temp2Text = ((TextView) hasViews.findViewById(id.temp2));
         currentDateText = ((TextView) hasViews.findViewById(id.current_date));
         weatherInfoLayout = ((LinearLayout) hasViews.findViewById(id.weather_info_layout));
-        publishText = ((TextView) hasViews.findViewById(id.publish_text));
-        temp2Text = ((TextView) hasViews.findViewById(id.temp2));
-        switchCity = ((Button) hasViews.findViewById(id.switch_city));
-        refreshWeather = ((Button) hasViews.findViewById(id.refresh_weather));
-        weatherDespText = ((TextView) hasViews.findViewById(id.weather_desp));
         if (switchCity!= null) {
             switchCity.setOnClickListener(new OnClickListener() {
 

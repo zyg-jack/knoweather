@@ -1,5 +1,8 @@
 package com.knowweather.app.activity;
 
+import net.youmi.android.banner.AdSize;
+import net.youmi.android.banner.AdView;
+
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
@@ -45,6 +48,9 @@ public class WeatherActivity extends Activity {
 	@DrawableRes(R.drawable.yin)
 	Drawable yinPic;
 	
+	@DrawableRes(R.drawable.snow)
+	Drawable snowPic;
+	
 	@ViewById(R.id.switch_city)
 	Button switchCity;
 	
@@ -83,6 +89,10 @@ public class WeatherActivity extends Activity {
 		} else {
 			showWeather();
 		}
+		
+		AdView adView = new AdView(this, AdSize.FIT_SCREEN);
+		LinearLayout adLayout = (LinearLayout) findViewById(R.id.adLayout);
+		adLayout.addView(adView);
 	}
 
 	@Click(R.id.switch_city)
@@ -195,6 +205,8 @@ public class WeatherActivity extends Activity {
 				wholeLayout.setBackgroundDrawable(cloudPic);
 			} else if (weatherDesp.equals("Òõ") || weatherDesp.contains("Òõ×ª")) {
 				wholeLayout.setBackgroundDrawable(yinPic);
+			} else if (weatherDesp.contains("Ñ©")) {
+				wholeLayout.setBackgroundDrawable(snowPic);
 			}
 			Intent intent = new Intent(this, AutoUpdateService.class);
 			startService(intent);

@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle.Control;
 
+import net.youmi.android.AdManager;
+
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ItemClick;
@@ -67,6 +69,7 @@ public class ChooseAreaActivity extends Activity {
 	
 	@AfterViews
 	void afterViewProcess(){
+		AdManager.getInstance(this).init("b09bb666d0858d5a", "25e76eb0917e5a12", false);
 		isFromWeatherActivity = getIntent().getBooleanExtra("from_weather_activity", false);
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
 		if (prefs.getBoolean("city_selected", false) && !isFromWeatherActivity) {

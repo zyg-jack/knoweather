@@ -46,10 +46,11 @@ public final class WeatherActivity_
     private void init_(Bundle savedInstanceState) {
         OnViewChangedNotifier.registerOnViewChangedListener(this);
         Resources resources_ = this.getResources();
+        cloudPic = resources_.getDrawable(drawable.cloud);
         yinPic = resources_.getDrawable(drawable.yin);
         rainPic = resources_.getDrawable(drawable.rain);
-        cloudPic = resources_.getDrawable(drawable.cloud);
         sunPic = resources_.getDrawable(drawable.sun);
+        snowPic = resources_.getDrawable(drawable.snow);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
     }
 
@@ -85,16 +86,16 @@ public final class WeatherActivity_
 
     @Override
     public void onViewChanged(HasViews hasViews) {
-        refreshWeather = ((Button) hasViews.findViewById(id.refresh_weather));
-        temp1Text = ((TextView) hasViews.findViewById(id.temp1));
-        publishText = ((TextView) hasViews.findViewById(id.publish_text));
-        switchCity = ((Button) hasViews.findViewById(id.switch_city));
-        wholeLayout = ((RelativeLayout) hasViews.findViewById(id.whole_layout));
-        cityNameText = ((TextView) hasViews.findViewById(id.city_name));
-        weatherDespText = ((TextView) hasViews.findViewById(id.weather_desp));
         temp2Text = ((TextView) hasViews.findViewById(id.temp2));
         currentDateText = ((TextView) hasViews.findViewById(id.current_date));
+        wholeLayout = ((RelativeLayout) hasViews.findViewById(id.whole_layout));
+        switchCity = ((Button) hasViews.findViewById(id.switch_city));
+        temp1Text = ((TextView) hasViews.findViewById(id.temp1));
+        refreshWeather = ((Button) hasViews.findViewById(id.refresh_weather));
         weatherInfoLayout = ((LinearLayout) hasViews.findViewById(id.weather_info_layout));
+        cityNameText = ((TextView) hasViews.findViewById(id.city_name));
+        publishText = ((TextView) hasViews.findViewById(id.publish_text));
+        weatherDespText = ((TextView) hasViews.findViewById(id.weather_desp));
         if (switchCity!= null) {
             switchCity.setOnClickListener(new OnClickListener() {
 

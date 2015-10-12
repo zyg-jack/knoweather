@@ -109,8 +109,14 @@
 		            android:layout_gravity="center_vertical"
 		            android:textColor="#FFF"
 		            android:textSize="65sp"/>
-                
             </LinearLayout>
+        </LinearLayout>
+        <LinearLayout 
+            	android:id="@+id/adLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_alignParentBottom="true">
         </LinearLayout>
     </RelativeLayout>
 </LinearLayout>
